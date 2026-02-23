@@ -2,10 +2,16 @@
 package OOPSApp;
 
 public class OOPSBannerApp {
-   public OOPSBannerApp() {
-   }
+    public static void main(String[] args) {
 
-   public static void main(String[] var0) {
-      System.out.println("OOPS");
-   }
+        System.out.println("   ***   " + "   ***   " + "  ****** " + "  ****** ");
+        System.out.println(" **   ** " + " **   ** " + " **   ** " + " **      ");
+        System.out.println(" **   ** " + " **   ** " + " **   ** " + " **      ");
+        System.out.println(" **   ** " + " **   ** " + " ******  " + "  *****  ");
+        System.out.println(" **   ** " + " **   ** " + " **      " + "      ** ");
+        System.out.println(" **   ** " + " **   ** " + " **      " + " **   ** ");
+        System.out.println("   ***   " + "   ***   " + " **      " + "  *****  ");
+
+    }
 }
+
