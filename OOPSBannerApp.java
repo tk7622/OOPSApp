@@ -1,101 +1,65 @@
+import java.util.HashMap;
+
 public class OOPSBannerApp {
+    public static HashMap<Character, String[]> createCharacterMap() {
 
-    static class CharacterPatternMap {
-        private char character;
-        private String[] pattern; 
+        HashMap<Character, String[]> charMap = new HashMap<>();
+        charMap.put('O', new String[]{
+                " ***** ",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                " ***** "
+        });
+        charMap.put('P', new String[]{
+                "****** ",
+                "*     *",
+                "*     *",
+                "****** ",
+                "*      ",
+                "*      ",
+                "*      "
+        });
+        charMap.put('S', new String[]{
+                " ***** ",
+                "*     *",
+                "*      ",
+                " ***** ",
+                "      *",
+                "*     *",
+                " ***** "
+        });
 
-        public CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-        public char getCharacter() {
-            return character;
-        }
-        public String[] getPattern() {
-            return pattern;
-        }
+        return charMap;
     }
-    public static CharacterPatternMap[] createCharacterPatternMaps() {
+    public static void displayBanner(String message,
+                                     HashMap<Character, String[]> charMap) {
 
-        CharacterPatternMap[] maps = new CharacterPatternMap[4];
+        int patternHeight = charMap.get('O').length;
+        for (int line = 0; line < patternHeight; line++) {
 
-        maps[0] = new CharacterPatternMap('O', new String[]{
-                "    ***   ", 
-                 " **   ** ", 
-                 "**     **", 
-                 "**     **", 
-                 "**     **", 
-                 " **   ** ", 
-                 "   ***   "
-        });
-        maps[1] = new CharacterPatternMap('O', new String[]{
-                "    ***   ", 
-                 " **   ** ", 
-                 "**     **", 
-                 "**     **", 
-                 "**     **", 
-                 " **   ** ", 
-                 "   ***   "
-        });
-        maps[2] = new CharacterPatternMap('P', new String[]{
-                "********", 
-                "**     **", 
-                "**     **", 
-                "**     **", 
-                "*********", 
-                "**       ", 
-                "**       ", 
-                "**       ", 
-        });
-         maps[3] = new CharacterPatternMap('S', new String[]{
-                "  ****** ", 
-                " **       ", 
-                "**        ", 
-                "  *****   ", 
-                "       ** ", 
-                " **    ** ", 
-                "  ******* "
-        });
+            StringBuilder sb = new StringBuilder();
 
-        return maps;
-    }
-    public static String[] getCharacterPattern(char ch, CharacterPatternMap[] charMaps) {
+            for (char ch : message.toCharArray()) {
 
-        ch = Character.toUpperCase(ch); 
-        for (CharacterPatternMap map : charMaps) {
-            if (map.getCharacter() == ch) {
-                return map.getPattern();
-            }
-        }
-        for (CharacterPatternMap map : charMaps) {
-            if (map.getCharacter() == ' ') {
-                return map.getPattern();
-            }
-        }
-        return null;
-    }
+                String[] pattern = charMap.get(ch);
 
-    // Print message as banner
-    public static void printMessage(String message, CharacterPatternMap[] charMaps) {
-
-        for (int line = 0; line < 7; line++) {
-
-            for (int i = 0; i < message.length(); i++) {
-                String[] pattern = getCharacterPattern(message.charAt(i), charMaps);
-                System.out.print(pattern[line] + "  "); // space between letters
+                if (pattern != null) {
+                    sb.append(pattern[line]).append("  ");
+                }
             }
 
-            System.out.println();
+            System.out.println(sb.toString());
         }
     }
-
-    // Main Method
     public static void main(String[] args) {
 
-        CharacterPatternMap[] charMaps = createCharacterPatternMaps();
+        HashMap<Character, String[]> charMap = createCharacterMap();
 
         String message = "OOPS";
-        printMessage(message, charMaps);
+
+        displayBanner(message, charMap);
     }
 }
-
